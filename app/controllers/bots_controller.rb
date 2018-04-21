@@ -13,6 +13,10 @@ class BotsController < ApplicationController
     render json: bot_response_message(wit_response)
   end
 
+  def greet
+    render json: { message: "Hello! I'm a news bot. Ask about anything, and I'll find you in today's news. An example could be: 'Get me some news on Buhari'" }
+  end
+
   private
 
   def bot_response_message(wit_response)
@@ -21,10 +25,15 @@ class BotsController < ApplicationController
       if wit_entities["intent"]
         { message: responses[wit_entities["intent"][0]["value"].to_sym] }
       elsif wit_entities["message"]
-        { message: Politics.search(wit_entities["message"][0]["value"]) }
+        search_results = Politics.search(wit_entities["message"][0]["value"])
+        if search_results.empty?
+          { message: "'#{wit_entities["message"][0]["value"]}' did not appear in the news today" }
+        else
+          { message: search_results }
+        end
       end
     else
-      { message: "I do not understand that. You can ask me for news and I'll provide you. An example could be: 'Get me some news on Buhari'"}
+      { message: "I do not understand that. You can ask me for news and I'll get it for you. An example could be: 'Get me some news on Buhari'"}
     end
   end
 end

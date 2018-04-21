@@ -52,12 +52,17 @@
 
       .bot-msg {
         color: red;
+        width: 50%;
+        float: left;
+        clear: both;
       }
 
       .user-msg {
-        color: blue;
         text-align: right;
+        color: blue;
         margin-right: 15px;
+        width: 50%;
+        overflow-wrap: break-word;
       }
     }
 

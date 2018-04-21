@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "bots#index"
 
   post "message" => "bots#message"
+  get "greet" => "bots#greet"
 end
