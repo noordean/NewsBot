@@ -15,7 +15,7 @@ class BotsController < ApplicationController
   end
 
   def greet
-    render json: { message: "Hello! I'm a news bot. I'm here to find you news on politics. An example could be: 'Get me some news on Buhari'" }
+    render json: { message: "Hello! I'm a news bot. I'm here to find you news on politics. I'm not perfect but I'll try my best to make this interactive. An example could be: 'Get me some news on Buhari'" }
   end
 
   private
