@@ -20,7 +20,7 @@ $(document).ready(function() {
       success: (response) => {
         if (Array.isArray(response.message)) {
           response.message.forEach(function(story) {
-            $(".chat-msgs").append(`<p class='bot-msg'><a target='_blank' href='${story._source.link}'><b>${story._source.title}:</b> ${story._source.description}</a></p>`);
+            $(".chat-msgs").append(`<p class='bot-msg'><a target='_blank' href='${story.link}'><b>${story.title}:</b> ${story.description}</a></p>`);
           });
         } else {
           $(".chat-msgs").append(`<p class='bot-msg'>${response.message}</p>`);
@@ -39,6 +39,7 @@ $(document).ready(function() {
         var message = $(this).val().trim();
         $(".chat-msgs").append(`<p class='user-msg pull-right'>${message}</p>`);
         $(this).val('');
+        $(".chat-msgs").scrollTop($(".chat-msgs").scrollTop() + 100);
         sendUserMessage({ message: message });
       }
     });

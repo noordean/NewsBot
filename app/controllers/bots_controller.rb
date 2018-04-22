@@ -3,8 +3,9 @@ class BotsController < ApplicationController
 
   def index
     scraped_data = CrawlerService.new("http://dailypost.ng/hot-news/").scrape
+    Politics.delete_all
     Politics.transaction do
-      scraped_data.each { |scraped_datum| Politics.find_or_create_by(scraped_datum) }
+      scraped_data.each { |scraped_datum| Politics.create(scraped_datum) }
     end
   end
 
@@ -14,7 +15,7 @@ class BotsController < ApplicationController
   end
 
   def greet
-    render json: { message: "Hello! I'm a news bot. Ask about anything, and I'll find you in today's news. An example could be: 'Get me some news on Buhari'" }
+    render json: { message: "Hello! I'm a news bot. I'm here to find you news on politics. An example could be: 'Get me some news on Buhari'" }
   end
 
   private

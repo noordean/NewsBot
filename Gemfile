@@ -7,8 +7,8 @@ end
 
 
 gem 'nokogiri'
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+# gem 'elasticsearch-model'
+# gem 'elasticsearch-rails'
 gem 'wit'
 gem 'dotenv-rails'
 gem 'bootstrap-sass'
